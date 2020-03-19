@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package>
-  <name>drcsim_gazebo_plugins</name>
+  <name>rover_plugins</name>
   <version>3.1.0</version>
-  <description>The drcsim_gazebo_plugins package</description>
-  <maintainer email="hsu@osrfoundation.org">John Hsu</maintainer>
+  <description>The car accelerating demo package</description>
+  <maintainer email="lcyfly1@163.com">Colin Lee</maintainer>
   <license>Apache 2.0</license>
   <url type="website">http://gazebosim.org/wiki/DRC</url>
   <buildtool_depend>catkin</buildtool_depend>
