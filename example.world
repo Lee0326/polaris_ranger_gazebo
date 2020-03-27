@@ -1,0 +1,23 @@
+<?xml version="1.0"?> 
+<sdf version="1.4">
+  <world name="default">
+
+    <!-- Ground Plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <model name='polaris_vehicle'>
+      <include>
+        <uri>model://polaris_ranger_xp900</uri>
+      </include>
+      <plugin name='car_accelerate' filename='/home/colin/Repos/polaris_plugin/devel/lib/libcar_accelerate.so'>
+         <gas_pedal>polaris_ranger_ev::gas_joint</gas_pedal>
+      </plugin>
+    </model>
+  </world>
+</sdf>

@@ -11,7 +11,7 @@ class VehicleControl : public ModelPlugin
 public:
     void Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
     {
-        // Store the pointer to the model
+        //Store the pointer to the model
         this->model = _parent;
         std::string gasPedalJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("gas_pedal");
         this->gasPedalJoint = this->model->GetJoint(gasPedalJointName);
