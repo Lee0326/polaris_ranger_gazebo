@@ -1,5 +1,5 @@
 <?xml version="1.0"?> 
-<sdf version="1.4">
+<sdf version="1.5">
   <world name="default">
 
     <!-- Ground Plane -->
@@ -15,8 +15,10 @@
       <include>
         <uri>model://polaris_ranger_ev</uri>
       </include>
-      <plugin name='car_accelerate' filename='/home/colin/Repos/polaris_plugin/devel/lib/libcar_accelerate.so'>
+      <plugin name='car_accelerate' filename='/home/colin/Repos/polaris_ranger_gazebo/devel/lib/libcar_accelerate.so'>
          <gas_pedal>polaris_ranger_ev::gas_joint</gas_pedal>
+	 <hand_brake_pedal>polaris_ranger_ev::hand_brake_joint</hand_brake_pedal>
+	 <brake_pedal>polaris_ranger_ev::hand_brake_joint</brake_pedal>
       </plugin>
     </model>
   </world>
