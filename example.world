@@ -13,7 +13,7 @@
 
     <model name='polaris_vehicle'>
       <include>
-        <uri>model://polaris_ranger_xp900</uri>
+        <uri>model://polaris_ranger_ev</uri>
       </include>
       <plugin name='car_accelerate' filename='/home/colin/Repos/polaris_plugin/devel/lib/libcar_accelerate.so'>
          <gas_pedal>polaris_ranger_ev::gas_joint</gas_pedal>
