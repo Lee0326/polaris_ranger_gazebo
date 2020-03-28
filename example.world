@@ -23,6 +23,8 @@
          <front_right_wheel>polaris_ranger_ev::front_right_wheel_joint</front_right_wheel>
          <back_left_wheel>polaris_ranger_ev::rear_left_wheel_joint</back_left_wheel>
          <back_right_wheel>polaris_ranger_ev::rear_right_wheel_joint</back_right_wheel>
+         <front_left_wheel_steering>polaris_ranger_ev::front_left_steering_joint</front_left_wheel_steering>
+         <front_right_wheel_steering>polaris_ranger_ev::front_right_steering_joint</front_right_wheel_steering>
       </plugin>
     </model>
 
@@ -39,6 +41,8 @@
          <front_right_wheel>polaris_ranger_ev::front_right_wheel_joint</front_right_wheel>
          <back_left_wheel>polaris_ranger_ev::rear_left_wheel_joint</back_left_wheel>
          <back_right_wheel>polaris_ranger_ev::rear_right_wheel_joint</back_right_wheel>
+         <front_left_wheel_steering>polaris_ranger_ev::front_left_steering_joint</front_left_wheel_steering>
+         <front_right_wheel_steering>polaris_ranger_ev::front_right_steering_joint</front_right_wheel_steering>
       </plugin>
     </model>
   </world>
