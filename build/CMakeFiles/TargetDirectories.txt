@@ -43,3 +43,10 @@
 /home/colin/Repos/polaris_ranger_gazebo/build/Vehicle_plugin/CMakeFiles/install.dir
 /home/colin/Repos/polaris_ranger_gazebo/build/Vehicle_plugin/CMakeFiles/edit_cache.dir
 /home/colin/Repos/polaris_ranger_gazebo/build/Vehicle_plugin/CMakeFiles/rebuild_cache.dir
+/home/colin/Repos/polaris_ranger_gazebo/build/Platoon_Simulation/CMakeFiles/install/strip.dir
+/home/colin/Repos/polaris_ranger_gazebo/build/Platoon_Simulation/CMakeFiles/edit_cache.dir
+/home/colin/Repos/polaris_ranger_gazebo/build/Platoon_Simulation/CMakeFiles/list_install_components.dir
+/home/colin/Repos/polaris_ranger_gazebo/build/Platoon_Simulation/CMakeFiles/test.dir
+/home/colin/Repos/polaris_ranger_gazebo/build/Platoon_Simulation/CMakeFiles/install/local.dir
+/home/colin/Repos/polaris_ranger_gazebo/build/Platoon_Simulation/CMakeFiles/rebuild_cache.dir
+/home/colin/Repos/polaris_ranger_gazebo/build/Platoon_Simulation/CMakeFiles/install.dir

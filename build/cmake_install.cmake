@@ -132,6 +132,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/colin/Repos/polaris_ranger_gazebo/build/gtest/cmake_install.cmake")
   include("/home/colin/Repos/polaris_ranger_gazebo/build/Vehicle_plugin/cmake_install.cmake")
+  include("/home/colin/Repos/polaris_ranger_gazebo/build/Platoon_Simulation/cmake_install.cmake")
 
 endif()
 

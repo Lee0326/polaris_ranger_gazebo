@@ -460,6 +460,24 @@ clean: Vehicle_plugin/CMakeFiles/car_accelerate.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory Platoon_Simulation
+
+# Convenience name for "all" pass in the directory.
+Platoon_Simulation/all:
+
+.PHONY : Platoon_Simulation/all
+
+# Convenience name for "clean" pass in the directory.
+Platoon_Simulation/clean:
+
+.PHONY : Platoon_Simulation/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Platoon_Simulation/preinstall:
+
+.PHONY : Platoon_Simulation/preinstall
+
+#=============================================================================
 # Special targets to cleanup operation of make.
 
 # Special rule to run CMake to check the build system integrity.

@@ -798,6 +798,12 @@ platoon_control_BINARY_DIR:STATIC=/home/colin/Repos/polaris_ranger_gazebo/build/
 //Value Computed by CMake
 platoon_control_SOURCE_DIR:STATIC=/home/colin/Repos/polaris_ranger_gazebo/src/Vehicle_plugin
 
+//Value Computed by CMake
+platoon_simulation_BINARY_DIR:STATIC=/home/colin/Repos/polaris_ranger_gazebo/build/Platoon_Simulation
+
+//Value Computed by CMake
+platoon_simulation_SOURCE_DIR:STATIC=/home/colin/Repos/polaris_ranger_gazebo/src/Platoon_Simulation
+
 
 ########################
 # INTERNAL cache entries
@@ -1120,7 +1126,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
