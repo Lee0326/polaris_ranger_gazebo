@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<sdf version='1.5'>
+    <model name='platoon_vehicle'>
+      <include>
+        <uri>model://polaris_ranger_ev</uri>
+        <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+          <alwaysOn>true</alwaysOn>
+         <updateRate>50.0</updateRate>
+          <bodyName>chassis</bodyName>
+          <topicName>vehicle/state</topicName>
+          <gaussianNoise>0.00</gaussianNoise>
+          <frameName>link</frameName>
+          <xyzOffsets>0 0 0</xyzOffsets>
+          <rpyOffsets>0 0 0</rpyOffsets>
+        </plugin>
+      </include>
+      <pose>5 0 0 0 0 0</pose>
+      <plugin name='car_accelerate' filename='/home/colin/Repos/polaris_ranger_gazebo/devel/lib/libcar_accelerate.so'>
+         <gas_pedal>polaris_ranger_ev::gas_joint</gas_pedal>
+	 <hand_brake_pedal>polaris_ranger_ev::hand_brake_joint</hand_brake_pedal>
+	 <brake_pedal>polaris_ranger_ev::hand_brake_joint</brake_pedal>
+         <front_left_wheel>polaris_ranger_ev::front_left_wheel_joint</front_left_wheel>
+         <front_right_wheel>polaris_ranger_ev::front_right_wheel_joint</front_right_wheel>
+         <back_left_wheel>polaris_ranger_ev::rear_left_wheel_joint</back_left_wheel>
+         <back_right_wheel>polaris_ranger_ev::rear_right_wheel_joint</back_right_wheel>
+         <front_left_wheel_steering>polaris_ranger_ev::front_left_steering_joint</front_left_wheel_steering>
+         <front_right_wheel_steering>polaris_ranger_ev::front_right_steering_joint</front_right_wheel_steering>
+      </plugin>
+    </model>
+</sdf>

@@ -29,7 +29,7 @@ namespace gazebo
 ////////////////////////////////////////////////////////////////////////////////
 // Constructor
 DRCVehiclePlugin::DRCVehiclePlugin()
-  : jointDeadbandPercent(0.02)
+    : jointDeadbandPercent(0.02)
 {
   this->keyState = ON;
   this->directionState = FORWARD;
@@ -96,8 +96,8 @@ void DRCVehiclePlugin::SetVehicleState(double _handWheelPosition,
                                        double _gasPedalPosition,
                                        double _brakePedalPosition,
                                        double _handBrakePosition,
-                                   DRCVehiclePlugin::KeyType _key,
-                                   DRCVehiclePlugin::DirectionType _direction)
+                                       DRCVehiclePlugin::KeyType _key,
+                                       DRCVehiclePlugin::DirectionType _direction)
 {
   // This function isn't currently looking at joint limits.
   this->handWheelCmd = _handWheelPosition;
@@ -122,7 +122,7 @@ DRCVehiclePlugin::KeyType DRCVehiclePlugin::GetKeyState()
 
 ////////////////////////////////////////////////////////////////////////////////
 void DRCVehiclePlugin::SetDirectionState(
-        DRCVehiclePlugin::DirectionType _direction)
+    DRCVehiclePlugin::DirectionType _direction)
 {
   this->directionState = _direction;
   if (_direction == NEUTRAL && this->keyState == ON_FR)
@@ -172,9 +172,9 @@ void DRCVehiclePlugin::SetHandBrakeLimits(double &_min, double &_max)
 {
   this->handBrakeJoint->SetHighStop(0, _max);
   this->handBrakeJoint->SetLowStop(0, _min);
-  this->handBrakeHigh  = this->handBrakeJoint->GetHighStop(0).Radian();
-  this->handBrakeLow   = this->handBrakeJoint->GetLowStop(0).Radian();
-  this->handBrakeRange   = this->handBrakeHigh - this->handBrakeLow;
+  this->handBrakeHigh = this->handBrakeJoint->GetHighStop(0).Radian();
+  this->handBrakeLow = this->handBrakeJoint->GetLowStop(0).Radian();
+  this->handBrakeRange = this->handBrakeHigh - this->handBrakeLow;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -224,8 +224,8 @@ double DRCVehiclePlugin::GetHandWheelState()
 void DRCVehiclePlugin::UpdateHandWheelRatio()
 {
   // The total range the steering wheel can rotate
-  this->handWheelHigh  = this->handWheelJoint->GetHighStop(0).Radian();
-  this->handWheelLow   = this->handWheelJoint->GetLowStop(0).Radian();
+  this->handWheelHigh = this->handWheelJoint->GetHighStop(0).Radian();
+  this->handWheelLow = this->handWheelJoint->GetLowStop(0).Radian();
   this->handWheelRange = this->handWheelHigh - this->handWheelLow;
   double high = std::min(this->flWheelSteeringJoint->GetHighStop(0).Radian(),
                          this->frWheelSteeringJoint->GetHighStop(0).Radian());
@@ -253,7 +253,7 @@ void DRCVehiclePlugin::SetSteeredWheelState(double _position)
 
 ////////////////////////////////////////////////////////////////////////////////
 void DRCVehiclePlugin::SetSteeredWheelLimits(const math::Angle &_min,
-                                         const math::Angle &_max)
+                                             const math::Angle &_max)
 {
   this->flWheelSteeringJoint->SetHighStop(0, _max);
   this->flWheelSteeringJoint->SetLowStop(0, _min);
@@ -265,12 +265,12 @@ void DRCVehiclePlugin::SetSteeredWheelLimits(const math::Angle &_min,
 ////////////////////////////////////////////////////////////////////////////////
 double DRCVehiclePlugin::GetSteeredWheelState()
 {
-    return 0.5*(flSteeringState + frSteeringState);
+  return 0.5 * (flSteeringState + frSteeringState);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void DRCVehiclePlugin::GetSteeredWheelLimits(math::Angle &_min,
-  math::Angle &_max)
+                                             math::Angle &_max)
 {
   _max = 0.5 * (this->flWheelSteeringJoint->GetHighStop(0).Radian() +
                 this->frWheelSteeringJoint->GetHighStop(0).Radian());
@@ -291,9 +291,9 @@ void DRCVehiclePlugin::SetGasPedalLimits(double _min, double _max)
 {
   this->gasPedalJoint->SetHighStop(0, _max);
   this->gasPedalJoint->SetLowStop(0, _min);
-  this->gasPedalHigh  = this->gasPedalJoint->GetHighStop(0).Radian();
-  this->gasPedalLow   = this->gasPedalJoint->GetLowStop(0).Radian();
-  this->gasPedalRange   = this->gasPedalHigh - this->gasPedalLow;
+  this->gasPedalHigh = this->gasPedalJoint->GetHighStop(0).Radian();
+  this->gasPedalLow = this->gasPedalJoint->GetLowStop(0).Radian();
+  this->gasPedalRange = this->gasPedalHigh - this->gasPedalLow;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -315,7 +315,7 @@ double DRCVehiclePlugin::GetGasPedalPercent()
 {
   double min, max;
   this->GetGasPedalLimits(min, max);
-  return math::clamp((this->gasPedalState - min) / (max-min), 0.0, 1.0);
+  return math::clamp((this->gasPedalState - min) / (max - min), 0.0, 1.0);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -323,7 +323,7 @@ double DRCVehiclePlugin::GetBrakePedalPercent()
 {
   double min, max;
   this->GetBrakePedalLimits(min, max);
-  return math::clamp((this->brakePedalState - min) / (max-min), 0.0, 1.0);
+  return math::clamp((this->brakePedalState - min) / (max - min), 0.0, 1.0);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -331,7 +331,7 @@ double DRCVehiclePlugin::GetHandBrakePercent()
 {
   double min, max;
   this->GetHandBrakeLimits(min, max);
-  return math::clamp((this->handBrakeState - min) / (max-min), 0.0, 1.0);
+  return math::clamp((this->handBrakeState - min) / (max - min), 0.0, 1.0);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -345,7 +345,7 @@ double DRCVehiclePlugin::GetFNRSwitchPercent()
 {
   double min, max;
   this->GetFNRSwitchLimits(min, max);
-  return math::clamp((this->fnrSwitchState - min) / (max-min), 0.0, 1.0);
+  return math::clamp((this->fnrSwitchState - min) / (max - min), 0.0, 1.0);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -361,34 +361,32 @@ void DRCVehiclePlugin::UpdateFNRSwitchTime()
   this->fnrSwitchTime = this->world->GetSimTime();
   switch (this->directionState)
   {
-    case FORWARD:
-      this->fnrSwitchCmd = this->fnrSwitchLow;
-      if (!this->fnrSwitchF.empty() && !fnrSwitchR.empty() && this->visualPub
-         && this->fnrSwitchTime.sec > 0)
-      {
-        this->msgForward.set_transparency(0.0);
-        this->msgReverse.set_transparency(1.0);
-        this->visualPub->Publish(this->msgForward);
-        this->visualPub->Publish(this->msgReverse);
-      }
-      break;
-    case REVERSE:
-      this->fnrSwitchCmd = this->fnrSwitchHigh;
-      if (!this->fnrSwitchF.empty() && !fnrSwitchR.empty() && this->visualPub
-         && this->fnrSwitchTime.sec > 0)
-      {
-        this->msgForward.set_transparency(1.0);
-        this->msgReverse.set_transparency(0.0);
-        this->visualPub->Publish(this->msgForward);
-        this->visualPub->Publish(this->msgReverse);
-      }
-      break;
-    case NEUTRAL:
-      gzdbg << "The FNR switch does not support Neutral.\n";
-      break;
-    default:
-      gzerr << "Invalid direction state " << this->directionState << "\n";
-      break;
+  case FORWARD:
+    this->fnrSwitchCmd = this->fnrSwitchLow;
+    if (!this->fnrSwitchF.empty() && !fnrSwitchR.empty() && this->visualPub && this->fnrSwitchTime.sec > 0)
+    {
+      this->msgForward.set_transparency(0.0);
+      this->msgReverse.set_transparency(1.0);
+      this->visualPub->Publish(this->msgForward);
+      this->visualPub->Publish(this->msgReverse);
+    }
+    break;
+  case REVERSE:
+    this->fnrSwitchCmd = this->fnrSwitchHigh;
+    if (!this->fnrSwitchF.empty() && !fnrSwitchR.empty() && this->visualPub && this->fnrSwitchTime.sec > 0)
+    {
+      this->msgForward.set_transparency(1.0);
+      this->msgReverse.set_transparency(0.0);
+      this->visualPub->Publish(this->msgForward);
+      this->visualPub->Publish(this->msgReverse);
+    }
+    break;
+  case NEUTRAL:
+    gzdbg << "The FNR switch does not support Neutral.\n";
+    break;
+  default:
+    gzerr << "Invalid direction state " << this->directionState << "\n";
+    break;
   }
 }
 
@@ -405,8 +403,8 @@ void DRCVehiclePlugin::SetBrakePedalLimits(double _min, double _max)
 {
   this->brakePedalJoint->SetHighStop(0, _max);
   this->brakePedalJoint->SetLowStop(0, _min);
-  this->brakePedalHigh  = this->brakePedalJoint->GetHighStop(0).Radian();
-  this->brakePedalLow   = this->brakePedalJoint->GetLowStop(0).Radian();
+  this->brakePedalHigh = this->brakePedalJoint->GetHighStop(0).Radian();
+  this->brakePedalLow = this->brakePedalJoint->GetLowStop(0).Radian();
   this->brakePedalRange = this->brakePedalHigh - this->brakePedalLow;
 }
 
@@ -423,142 +421,128 @@ double DRCVehiclePlugin::GetBrakePedalState()
   return this->brakePedalState;
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////
 // Load the controller
 void DRCVehiclePlugin::Load(physics::ModelPtr _parent,
-                                 sdf::ElementPtr _sdf)
+                            sdf::ElementPtr _sdf)
 {
   // Get the world name.
   this->world = _parent->GetWorld();
   this->model = _parent;
 
   // Get joints
-  std::string gasPedalJointName = this->model->GetName() + "::"
-    + _sdf->Get<std::string>("gas_pedal");
+  std::string gasPedalJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("gas_pedal");
   this->gasPedalJoint = this->model->GetJoint(gasPedalJointName);
   if (!this->gasPedalJoint)
     gzthrow("could not find gas pedal joint\n");
 
-  std::string brakePedalJointName = this->model->GetName() + "::"
-    + _sdf->Get<std::string>("brake_pedal");
+  std::string brakePedalJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("brake_pedal");
   this->brakePedalJoint = this->model->GetJoint(brakePedalJointName);
   if (!this->brakePedalJoint)
     gzthrow("could not find brake pedal joint\n");
 
-  std::string handWheelJointName = this->model->GetName() + "::"
-    + _sdf->Get<std::string>("steering_wheel");
+  std::string handWheelJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("steering_wheel");
   this->handWheelJoint = this->model->GetJoint(handWheelJointName);
   if (!this->handWheelJoint)
     gzthrow("could not find steering wheel joint\n");
 
-  std::string handBrakeJointName = this->model->GetName() + "::"
-    + _sdf->Get<std::string>("hand_brake");
+  std::string handBrakeJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("hand_brake");
   this->handBrakeJoint = this->model->GetJoint(handBrakeJointName);
   if (!this->handBrakeJoint)
     gzthrow("could not find hand brake joint\n");
 
-  std::string fnrSwitchJointName = this->model->GetName() + "::"
-    + _sdf->Get<std::string>("fnr_switch");
+  std::string fnrSwitchJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("fnr_switch");
   this->fnrSwitchJoint = this->model->GetJoint(fnrSwitchJointName);
   if (!this->fnrSwitchJoint)
     gzthrow("could not find FNR switch joint\n");
 
-  std::string flWheelJointName = this->model->GetName() + "::"
-    + _sdf->Get<std::string>("front_left_wheel");
+  std::string flWheelJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("front_left_wheel");
   this->flWheelJoint = this->model->GetJoint(flWheelJointName);
   if (!this->flWheelJoint)
     gzthrow("could not find front left wheel joint\n");
 
-  std::string frWheelJointName = this->model->GetName() + "::"
-    + _sdf->Get<std::string>("front_right_wheel");
+  std::string frWheelJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("front_right_wheel");
   this->frWheelJoint = this->model->GetJoint(frWheelJointName);
   if (!this->frWheelJoint)
     gzthrow("could not find front right wheel joint\n");
 
-  std::string blWheelJointName = this->model->GetName() + "::"
-    + _sdf->Get<std::string>("back_left_wheel");
+  std::string blWheelJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("back_left_wheel");
   this->blWheelJoint = this->model->GetJoint(blWheelJointName);
   if (!this->blWheelJoint)
     gzthrow("could not find back left wheel joint\n");
 
-  std::string brWheelJointName = this->model->GetName() + "::"
-    + _sdf->Get<std::string>("back_right_wheel");
+  std::string brWheelJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("back_right_wheel");
   this->brWheelJoint = this->model->GetJoint(brWheelJointName);
   if (!this->brWheelJoint)
     gzthrow("could not find back right wheel joint\n");
 
-  std::string flWheelSteeringJointName = this->model->GetName() + "::"
-    + _sdf->Get<std::string>("front_left_wheel_steering");
+  std::string flWheelSteeringJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("front_left_wheel_steering");
   this->flWheelSteeringJoint = this->model->GetJoint(flWheelSteeringJointName);
   if (!this->flWheelSteeringJoint)
     gzthrow("could not find front left steering joint\n");
 
-  std::string frWheelSteeringJointName = this->model->GetName() + "::"
-    + _sdf->Get<std::string>("front_right_wheel_steering");
+  std::string frWheelSteeringJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("front_right_wheel_steering");
   this->frWheelSteeringJoint = this->model->GetJoint(frWheelSteeringJointName);
   if (!this->frWheelSteeringJoint)
     gzthrow("could not find front right steering joint\n");
 
   if (_sdf->HasElement("fnr_switch_f"))
-    this->fnrSwitchF = this->model->GetName() + "::"
-      + _sdf->Get<std::string>("fnr_switch_f");
+    this->fnrSwitchF = this->model->GetName() + "::" + _sdf->Get<std::string>("fnr_switch_f");
 
   if (_sdf->HasElement("fnr_switch_r"))
-    this->fnrSwitchR = this->model->GetName() + "::"
-      + _sdf->Get<std::string>("fnr_switch_r");
+    this->fnrSwitchR = this->model->GetName() + "::" + _sdf->Get<std::string>("fnr_switch_r");
 
   this->msgForward.set_name(this->fnrSwitchF);
   this->msgReverse.set_name(this->fnrSwitchR);
 
   std::string fParentName =
-    this->fnrSwitchF.substr(0, this->fnrSwitchF.rfind("::"));
+      this->fnrSwitchF.substr(0, this->fnrSwitchF.rfind("::"));
   std::string rParentName =
-    this->fnrSwitchR.substr(0, this->fnrSwitchR.rfind("::"));
+      this->fnrSwitchR.substr(0, this->fnrSwitchR.rfind("::"));
   this->msgForward.set_parent_name(fParentName);
   this->msgReverse.set_parent_name(rParentName);
 
   // Put some deadband at the end of range for gas and brake pedals
   // and hand brake
   double jointCenter;
-  this->gasPedalHigh  = this->gasPedalJoint->GetHighStop(0).Radian();
-  this->gasPedalLow   = this->gasPedalJoint->GetLowStop(0).Radian();
+  this->gasPedalHigh = this->gasPedalJoint->GetHighStop(0).Radian();
+  this->gasPedalLow = this->gasPedalJoint->GetLowStop(0).Radian();
   jointCenter = (this->gasPedalHigh + this->gasPedalLow) / 2.0;
   this->gasPedalHigh = jointCenter +
-    (1 - this->jointDeadbandPercent) * (this->gasPedalHigh - jointCenter);
+                       (1 - this->jointDeadbandPercent) * (this->gasPedalHigh - jointCenter);
   this->gasPedalLow = jointCenter +
-    (1 - this->jointDeadbandPercent) * (this->gasPedalLow - jointCenter);
-  this->gasPedalRange   = this->gasPedalHigh - this->gasPedalLow;
+                      (1 - this->jointDeadbandPercent) * (this->gasPedalLow - jointCenter);
+  this->gasPedalRange = this->gasPedalHigh - this->gasPedalLow;
 
-  this->brakePedalHigh  = this->brakePedalJoint->GetHighStop(0).Radian();
-  this->brakePedalLow   = this->brakePedalJoint->GetLowStop(0).Radian();
+  this->brakePedalHigh = this->brakePedalJoint->GetHighStop(0).Radian();
+  this->brakePedalLow = this->brakePedalJoint->GetLowStop(0).Radian();
   jointCenter = (this->brakePedalHigh + this->brakePedalLow) / 2.0;
   this->brakePedalHigh = jointCenter +
-    (1 - this->jointDeadbandPercent) * (this->brakePedalHigh - jointCenter);
+                         (1 - this->jointDeadbandPercent) * (this->brakePedalHigh - jointCenter);
   this->brakePedalLow = jointCenter +
-    (1 - this->jointDeadbandPercent) * (this->brakePedalLow - jointCenter);
-  this->brakePedalRange   = this->brakePedalHigh - this->brakePedalLow;
+                        (1 - this->jointDeadbandPercent) * (this->brakePedalLow - jointCenter);
+  this->brakePedalRange = this->brakePedalHigh - this->brakePedalLow;
 
-  this->handBrakeHigh  = this->handBrakeJoint->GetHighStop(0).Radian();
-  this->handBrakeLow   = this->handBrakeJoint->GetLowStop(0).Radian();
+  this->handBrakeHigh = this->handBrakeJoint->GetHighStop(0).Radian();
+  this->handBrakeLow = this->handBrakeJoint->GetLowStop(0).Radian();
 
   jointCenter = (this->handBrakeHigh + this->handBrakeLow) / 2.0;
   this->handBrakeHigh = jointCenter +
-    (1 - this->jointDeadbandPercent) * (this->handBrakeHigh - jointCenter);
+                        (1 - this->jointDeadbandPercent) * (this->handBrakeHigh - jointCenter);
   this->handBrakeLow = jointCenter +
-    (1 - this->jointDeadbandPercent) * (this->handBrakeLow - jointCenter);
-  this->handBrakeRange   = this->handBrakeHigh - this->handBrakeLow;
+                       (1 - this->jointDeadbandPercent) * (this->handBrakeLow - jointCenter);
+  this->handBrakeRange = this->handBrakeHigh - this->handBrakeLow;
   this->handBrakeCmd = this->handBrakeHigh;
 
-  this->fnrSwitchHigh  = this->fnrSwitchJoint->GetHighStop(0).Radian();
-  this->fnrSwitchLow   = this->fnrSwitchJoint->GetLowStop(0).Radian();
+  this->fnrSwitchHigh = this->fnrSwitchJoint->GetHighStop(0).Radian();
+  this->fnrSwitchLow = this->fnrSwitchJoint->GetLowStop(0).Radian();
 
   jointCenter = (this->fnrSwitchHigh + this->fnrSwitchLow) / 2.0;
   this->fnrSwitchHigh = jointCenter +
-    (1 - this->jointDeadbandPercent) * (this->fnrSwitchHigh - jointCenter);
+                        (1 - this->jointDeadbandPercent) * (this->fnrSwitchHigh - jointCenter);
   this->fnrSwitchLow = jointCenter +
-    (1 - this->jointDeadbandPercent) * (this->fnrSwitchLow - jointCenter);
-  this->fnrSwitchRange   = this->fnrSwitchHigh - this->fnrSwitchLow;
+                       (1 - this->jointDeadbandPercent) * (this->fnrSwitchLow - jointCenter);
+  this->fnrSwitchRange = this->fnrSwitchHigh - this->fnrSwitchLow;
   this->UpdateFNRSwitchTime();
 
   // get some vehicle parameters
@@ -693,13 +677,13 @@ void DRCVehiclePlugin::Load(physics::ModelPtr _parent,
   //  assumes that wheel link has only one collision
   unsigned int id = 0;
   this->flWheelRadius = DRCVehiclePlugin::get_collision_radius(
-                          this->flWheelJoint->GetChild()->GetCollision(id));
+      this->flWheelJoint->GetChild()->GetCollision(id));
   this->frWheelRadius = DRCVehiclePlugin::get_collision_radius(
-                          this->frWheelJoint->GetChild()->GetCollision(id));
+      this->frWheelJoint->GetChild()->GetCollision(id));
   this->blWheelRadius = DRCVehiclePlugin::get_collision_radius(
-                          this->blWheelJoint->GetChild()->GetCollision(id));
+      this->blWheelJoint->GetChild()->GetCollision(id));
   this->brWheelRadius = DRCVehiclePlugin::get_collision_radius(
-                          this->brWheelJoint->GetChild()->GetCollision(id));
+      this->brWheelJoint->GetChild()->GetCollision(id));
   // gzerr << this->flWheelRadius << " " << this->frWheelRadius << " "
   //       << this->blWheelRadius << " " << this->brWheelRadius << "\n";
 
@@ -707,13 +691,13 @@ void DRCVehiclePlugin::Load(physics::ModelPtr _parent,
   //  first compute the positions of the 4 wheel centers
   //  again assumes wheel link is child of joint and has only one collision
   math::Vector3 flCenterPos = DRCVehiclePlugin::get_collision_position(
-                                this->flWheelJoint->GetChild(), id);
+      this->flWheelJoint->GetChild(), id);
   math::Vector3 frCenterPos = DRCVehiclePlugin::get_collision_position(
-                                this->frWheelJoint->GetChild(), id);
+      this->frWheelJoint->GetChild(), id);
   math::Vector3 blCenterPos = DRCVehiclePlugin::get_collision_position(
-                                this->blWheelJoint->GetChild(), id);
+      this->blWheelJoint->GetChild(), id);
   math::Vector3 brCenterPos = DRCVehiclePlugin::get_collision_position(
-                                this->brWheelJoint->GetChild(), id);
+      this->brWheelJoint->GetChild(), id);
   // track widths are computed first
   math::Vector3 vec3 = flCenterPos - frCenterPos;
   frontTrackWidth = vec3.GetLength();
@@ -733,13 +717,13 @@ void DRCVehiclePlugin::Load(physics::ModelPtr _parent,
   this->gasPedalPID.Init(800, 0, 0, 0, 0,
                          this->pedalForce, -this->pedalForce);
   this->brakePedalPID.Init(800, 0, 0, 0, 0,
-                         this->pedalForce, -this->pedalForce);
+                           this->pedalForce, -this->pedalForce);
   this->handWheelPID.Init(100, 0, 0, 0, 0,
-                         this->handWheelForce, -this->handWheelForce);
+                          this->handWheelForce, -this->handWheelForce);
   this->handBrakePID.Init(30, 0, 0, 0, 0,
-                         this->handBrakeForce, -this->handBrakeForce);
+                          this->handBrakeForce, -this->handBrakeForce);
   this->fnrSwitchPID.Init(30, 0, 0, 0, 0,
-                         this->fnrSwitchForce, -this->fnrSwitchForce);
+                          this->fnrSwitchForce, -this->fnrSwitchForce);
   this->flWheelSteeringPID.Init(this->fLwheelSteeringPgain,
                                 this->fLwheelSteeringIgain,
                                 this->fLwheelSteeringDgain,
@@ -795,14 +779,14 @@ void DRCVehiclePlugin::UpdateStates()
     double handBrakeCmdEps = 0.01;
     if (this->handBrakeCmd < (this->handBrakeLow + handBrakeCmdEps) &&
         this->GetHandBrakePercent() > (0.5 + handBrakeHysteresis) &&
-        (curTime-this->handBrakeTime).Double() > 0.5)
+        (curTime - this->handBrakeTime).Double() > 0.5)
     {
       this->handBrakeCmd = this->handBrakeHigh;
       gzlog << "Hand brake manually enabled\n";
     }
     else if (this->handBrakeCmd > (this->handBrakeHigh - handBrakeCmdEps) &&
-        this->GetHandBrakePercent() < (0.5 - handBrakeHysteresis) &&
-        (curTime-this->handBrakeTime).Double() > 0.5)
+             this->GetHandBrakePercent() < (0.5 - handBrakeHysteresis) &&
+             (curTime - this->handBrakeTime).Double() > 0.5)
     {
       this->handBrakeCmd = this->handBrakeLow;
       gzlog << "Hand brake manually disabled\n";
@@ -818,15 +802,15 @@ void DRCVehiclePlugin::UpdateStates()
     double fnrSwitchCmdEps = handBrakeCmdEps;
     if (this->fnrSwitchCmd < (fnrSwitchLow + fnrSwitchCmdEps) &&
         this->GetFNRSwitchPercent() > (0.5 + fnrSwitchHysteresis) &&
-        (curTime-this->fnrSwitchTime).Double() > 0.5)
+        (curTime - this->fnrSwitchTime).Double() > 0.5)
     {
       this->SetDirectionState(REVERSE);
       this->UpdateFNRSwitchTime();
       gzlog << "FNR switch manually set to reverse\n";
     }
     else if (this->fnrSwitchCmd > (fnrSwitchHigh - fnrSwitchCmdEps) &&
-        this->GetFNRSwitchPercent() < (0.5 - fnrSwitchHysteresis) &&
-        (curTime-this->fnrSwitchTime).Double() > 0.5)
+             this->GetFNRSwitchPercent() < (0.5 - fnrSwitchHysteresis) &&
+             (curTime - this->fnrSwitchTime).Double() > 0.5)
     {
       this->SetDirectionState(FORWARD);
       this->UpdateFNRSwitchTime();
@@ -853,13 +837,13 @@ void DRCVehiclePlugin::UpdateStates()
     //  \TODO provide documentation for these equations
     double tanSteer = tan(this->handWheelState * this->steeringRatio);
     this->flWheelSteeringCmd = atan2(tanSteer,
-        1 - frontTrackWidth/2/wheelbaseLength * tanSteer);
+                                     1 - frontTrackWidth / 2 / wheelbaseLength * tanSteer);
     this->frWheelSteeringCmd = atan2(tanSteer,
-        1 + frontTrackWidth/2/wheelbaseLength * tanSteer);
+                                     1 + frontTrackWidth / 2 / wheelbaseLength * tanSteer);
     // this->flWheelSteeringCmd = this->handWheelState * this->steeringRatio;
     // this->frWheelSteeringCmd = this->handWheelState * this->steeringRatio;
 
-    double flwsError =  this->flSteeringState - this->flWheelSteeringCmd;
+    double flwsError = this->flSteeringState - this->flWheelSteeringCmd;
     double flwsCmd = this->flWheelSteeringPID.Update(flwsError, dt);
     this->flWheelSteeringJoint->SetForce(0, flwsCmd);
 
@@ -880,37 +864,34 @@ void DRCVehiclePlugin::UpdateStates()
     double flGasTorque = 0, frGasTorque = 0, blGasTorque = 0, brGasTorque = 0;
     // Apply equal torque at left and right wheels, which is an implicit model
     // of the differential.
-    if ((fabs(this->flWheelState * this->flWheelRadius) < this->maxSpeed)
-      && (fabs(this->frWheelState * this->frWheelRadius) < this->maxSpeed))
+    if ((fabs(this->flWheelState * this->flWheelRadius) < this->maxSpeed) && (fabs(this->frWheelState * this->frWheelRadius) < this->maxSpeed))
     {
-      flGasTorque = gasPercent*this->frontTorque * gasMultiplier;
-      frGasTorque = gasPercent*this->frontTorque * gasMultiplier;
+      flGasTorque = gasPercent * this->frontTorque * gasMultiplier;
+      frGasTorque = gasPercent * this->frontTorque * gasMultiplier;
     }
-    if ( (fabs(this->blWheelState * this->blWheelRadius) < this->maxSpeed)
-      && (fabs(this->brWheelState * this->brWheelRadius) < this->maxSpeed))
+    if ((fabs(this->blWheelState * this->blWheelRadius) < this->maxSpeed) && (fabs(this->brWheelState * this->brWheelRadius) < this->maxSpeed))
     {
-      blGasTorque = gasPercent*this->backTorque * gasMultiplier;
-      brGasTorque = gasPercent*this->backTorque * gasMultiplier;
+      blGasTorque = gasPercent * this->backTorque * gasMultiplier;
+      brGasTorque = gasPercent * this->backTorque * gasMultiplier;
     }
 
     // Brake pedal, hand-brake torque.
     // Compute percents and add together, saturating at 100%
-    double brakePercent = this->GetBrakePedalPercent()
-      + this->GetHandBrakePercent();
+    double brakePercent = this->GetBrakePedalPercent() + this->GetHandBrakePercent();
     brakePercent = math::clamp(brakePercent, this->minBrakePercent, 1.0);
     // Map brake torques to individual wheels.
     // Apply brake torque in opposition to wheel spin direction.
     double flBrakeTorque, frBrakeTorque, blBrakeTorque, brBrakeTorque;
     // Below the smoothing speed in rad/s, reduce applied brake torque
     double smoothingSpeed = 0.5;
-    flBrakeTorque = -brakePercent*this->frontBrakeTorque *
-      math::clamp(this->flWheelState / smoothingSpeed, -1.0, 1.0);
-    frBrakeTorque = -brakePercent*this->frontBrakeTorque *
-      math::clamp(this->frWheelState / smoothingSpeed, -1.0, 1.0);
-    blBrakeTorque = -brakePercent*this->backBrakeTorque *
-      math::clamp(this->blWheelState / smoothingSpeed, -1.0, 1.0);
-    brBrakeTorque = -brakePercent*this->backBrakeTorque *
-      math::clamp(this->brWheelState / smoothingSpeed, -1.0, 1.0);
+    flBrakeTorque = -brakePercent * this->frontBrakeTorque *
+                    math::clamp(this->flWheelState / smoothingSpeed, -1.0, 1.0);
+    frBrakeTorque = -brakePercent * this->frontBrakeTorque *
+                    math::clamp(this->frWheelState / smoothingSpeed, -1.0, 1.0);
+    blBrakeTorque = -brakePercent * this->backBrakeTorque *
+                    math::clamp(this->blWheelState / smoothingSpeed, -1.0, 1.0);
+    brBrakeTorque = -brakePercent * this->backBrakeTorque *
+                    math::clamp(this->brWheelState / smoothingSpeed, -1.0, 1.0);
 
     // Lock wheels if high braking applied at low speed
     if (brakePercent > 0.7 && fabs(this->flWheelState) < smoothingSpeed)
@@ -967,13 +948,13 @@ double DRCVehiclePlugin::get_collision_radius(physics::CollisionPtr _coll)
   if (_coll->GetShape()->HasType(gazebo::physics::Base::CYLINDER_SHAPE))
   {
     physics::CylinderShape *cyl =
-        static_cast<physics::CylinderShape*>(_coll->GetShape().get());
+        static_cast<physics::CylinderShape *>(_coll->GetShape().get());
     return cyl->GetRadius();
   }
   else if (_coll->GetShape()->HasType(physics::Base::SPHERE_SHAPE))
   {
     physics::SphereShape *sph =
-        static_cast<physics::SphereShape*>(_coll->GetShape().get());
+        static_cast<physics::SphereShape *>(_coll->GetShape().get());
     return sph->GetRadius();
   }
   return 0;
@@ -991,4 +972,4 @@ math::Vector3 DRCVehiclePlugin::get_collision_position(physics::LinkPtr _link,
 }
 
 GZ_REGISTER_MODEL_PLUGIN(DRCVehiclePlugin)
-}
+} // namespace gazebo

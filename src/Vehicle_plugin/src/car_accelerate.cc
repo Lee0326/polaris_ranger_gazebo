@@ -58,12 +58,12 @@ public:
         this->gasPedalJoint->SetForce(0, 0);
         this->gasPedalJoint->SetForce(0, 0);
         this->gasPedalJoint->SetForce(0, 0);
-        this->flWheelJoint->SetForce(0, -10);
-        this->frWheelJoint->SetForce(0, -10);
-        this->blWheelJoint->SetForce(0, -10);
-        this->brWheelJoint->SetForce(0, -10);
-        this->flWheelSteeringJoint->SetForce(0, 10);
-        this->frWheelSteeringJoint->SetForce(0, 10);
+        this->flWheelJoint->SetForce(0, 10);
+        this->frWheelJoint->SetForce(0, 10);
+        this->blWheelJoint->SetForce(0, 10);
+        this->brWheelJoint->SetForce(0, 10);
+        this->flWheelSteeringJoint->SetForce(0, 1);
+        this->frWheelSteeringJoint->SetForce(0, 1);
     }
 
     // Pointer to the model

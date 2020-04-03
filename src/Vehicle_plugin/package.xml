@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>rover_plugins</name>
+  <name>platoon_control</name>
   <version>3.1.0</version>
-  <description>The car accelerating demo package</description>
+  <description>The vehicle platoon demo package</description>
   <maintainer email="lcyfly1@163.com">Colin Lee</maintainer>
   <license>Apache 2.0</license>
   <url type="website">http://gazebosim.org/wiki/DRC</url>
