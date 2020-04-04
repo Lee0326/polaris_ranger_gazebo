@@ -12,7 +12,9 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_TARGET_DEFINITIONS_CXX
   "LIBBULLET_VERSION=2.87"
   "LIBBULLET_VERSION_GT_282"
+  "ROSCONSOLE_BACKEND_LOG4CXX"
   "ROS_BUILD_SHARED_LIBS=1"
+  "ROS_PACKAGE_NAME=\"platoon_control\""
   )
 
 # The include file search paths:
@@ -29,6 +31,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/ignition/msgs1"
   "/usr/include/ignition/common1"
   "/usr/include/ignition/fuel_tools1"
+  "/opt/ros/melodic/include"
+  "/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/usr/include/uuid"
   "/usr/include/x86_64-linux-gnu"
   )

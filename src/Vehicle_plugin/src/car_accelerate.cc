@@ -3,6 +3,9 @@
 #include <gazebo/physics/physics.hh>
 #include <gazebo/common/common.hh>
 #include <ignition/math/Vector3.hh>
+#include <ros/ros.h>
+#include <ros/subscribe_options.h>
+#include <std_msgs/Float64.h>
 
 namespace gazebo
 {
@@ -82,6 +85,10 @@ private:
     // Pointer to the update event connection
 private:
     event::ConnectionPtr updateConnection;
+    // ros stuff
+    ros::NodeHandle *rosNode;
+    ros::Subscriber subDriveCmd;
+    ros::Subscriber subSteeringCmd;
 };
 
 // Register this plugin with the simulator
