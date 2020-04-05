@@ -19,6 +19,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/colin/Repos/polaris_ranger_gazebo/src/Vehicle_plugin/include"
   "/usr/include/gazebo-9"
   "/usr/include/bullet"
   "/usr/include/simbody"

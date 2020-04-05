@@ -7,6 +7,7 @@ find_package(catkin REQUIRED
     std_msgs
 )
 include_directories(
+    include
     ${GAZEBO_INCLUDE_DIRS}
     ${catkin_INCLUDE_DIRS}
 )
