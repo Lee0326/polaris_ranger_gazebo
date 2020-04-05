@@ -34,6 +34,11 @@ void VehicleControl::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
         boost::bind(&VehicleControl::driveCallBack, this, _1),
         ros::VoidPtr(), &this->queue);
     this->subDriveCmd = this->rosNode->subscribe(drive_cmd_so);
+    ros::SubscribeOptions steer_cmd_so = ros::SubscribeOptions::create<std_msgs::Float64>(
+        "platoon/steer_cmd", 1,
+        boost::bind(&VehicleControl::steerCallBack, this, _1),
+        ros::VoidPtr(), &this->queue);
+    this->subSteerCmd = this->rosNode->subscribe(steer_cmd_so);
     //Store the pointer to the model
     this->model = _parent;
     std::string gasPedalJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("gas_pedal");
@@ -74,24 +79,26 @@ void VehicleControl::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
         boost::bind(&VehicleControl::OnUpdate, this));
 }
 
-// Called by the world update start event
 void VehicleControl::driveCallBack(const std_msgs::Float64::ConstPtr &_msg)
 {
     // Apply a small linear velocity to the model.
     //this->model->SetLinearVel(ignition::math::Vector3d(.3, 0, 0));
     this->drive_force = _msg->data;
 }
+void VehicleControl::steerCallBack(const std_msgs::Float64::ConstPtr &_msg)
+{
+    // Apply a small linear velocity to the model.
+    //this->model->SetLinearVel(ignition::math::Vector3d(.3, 0, 0));
+    this->steer_cmd = _msg->data;
+}
 void VehicleControl::OnUpdate()
 {
-    this->gasPedalJoint->SetForce(0, 0);
-    this->gasPedalJoint->SetForce(0, 0);
-    this->gasPedalJoint->SetForce(0, 0);
     this->flWheelJoint->SetForce(0, this->drive_force);
     this->frWheelJoint->SetForce(0, this->drive_force);
     this->blWheelJoint->SetForce(0, this->drive_force);
     this->brWheelJoint->SetForce(0, this->drive_force);
-    this->flWheelSteeringJoint->SetForce(0, 1);
-    this->frWheelSteeringJoint->SetForce(0, 1);
+    this->flWheelSteeringJoint->SetForce(0, this->steer_cmd);
+    this->frWheelSteeringJoint->SetForce(0, this->steer_cmd);
 }
 void VehicleControl::QueueThread()
 {

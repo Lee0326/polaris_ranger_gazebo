@@ -30,6 +30,9 @@ public:
     void driveCallBack(const std_msgs::Float64::ConstPtr &_msg);
 
 public:
+    void steerCallBack(const std_msgs::Float64::ConstPtr &_msg);
+
+public:
     void OnUpdate();
 
 public:
@@ -46,7 +49,8 @@ private:
     physics::JointPtr brWheelJoint;
     physics::JointPtr flWheelSteeringJoint;
     physics::JointPtr frWheelSteeringJoint;
-    float drive_force;
+    float drive_force = 0.0;
+    float steer_cmd = 0.0;
 
     // Pointer to the update event connection
 private:
@@ -54,7 +58,7 @@ private:
     // ros stuff
     ros::NodeHandle *rosNode;
     ros::Subscriber subDriveCmd;
-    ros::Subscriber subSteeringCmd;
+    ros::Subscriber subSteerCmd;
     ros::CallbackQueue queue;
     boost::thread callbackQueueThread;
 };
