@@ -1,0 +1,8 @@
+prefix=/home/colin/Repos/polaris_ranger_gazebo/install
+
+Name: platoon_control
+Description: Description of platoon_control
+Version: 3.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

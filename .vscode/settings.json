@@ -69,5 +69,6 @@
         "*.ipp": "cpp",
         "any": "cpp",
         "variant": "cpp"
-    }
+    },
+    "editor.formatOnSave": true
 }

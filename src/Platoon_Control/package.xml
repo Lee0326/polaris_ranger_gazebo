@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <name>platoon_control</name>
+  <version>3.1.0</version>
+  <description>The vehicle platoon demo package</description>
+  <maintainer email="lcyfly1@163.com">Colin Lee</maintainer>
+  <license>Apache 2.0</license>
+  <url type="website">http://gazebosim.org/wiki/DRC</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>message_filters</build_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend> 
+  <run_depend>nav_msgs</run_depend> 
+  <run_depend>message_filters</run_depend>
+</package>

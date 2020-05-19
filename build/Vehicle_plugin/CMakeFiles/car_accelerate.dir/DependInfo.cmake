@@ -14,7 +14,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
   "LIBBULLET_VERSION_GT_282"
   "ROSCONSOLE_BACKEND_LOG4CXX"
   "ROS_BUILD_SHARED_LIBS=1"
-  "ROS_PACKAGE_NAME=\"platoon_control\""
+  "ROS_PACKAGE_NAME=\"vehicle_control_plugin\""
   )
 
 # The include file search paths:
