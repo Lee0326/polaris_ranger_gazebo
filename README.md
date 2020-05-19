@@ -42,5 +42,24 @@ A car simulation package in gazebo. Run the following command to build it.
 git clone https://github.com/Lee0326/polaris_ranger_gazebo.git
 cd polaris_ranger_gazebo
 catkin_make
+source devel/setup.bash
+```
+
+Run the following command to launch the simulation world with three vehicles:
+
+```
+roslaunch platoon_simulation patoon_control.launch
+```
+
+You will see the three vehicles in a platoon:
+
+[![Yo9YuT.jpg](https://s1.ax1x.com/2020/05/20/Yo9YuT.jpg)](https://imgchr.com/i/Yo9YuT)
+
+Open another terminal and run the platoon control node
+
+```
+cd polaris_ranger_gazebo
+source devel/setup.bash
+rosrun platoon_control platoon_controller
 ```
 
