@@ -1,0 +1,2 @@
+Platoon_Simulation:Vehicle_plugin
+-DCATKIN_DEVEL_PREFIX=/home/colin/Repos/polaris_ranger_gazebo/devel -DCMAKE_INSTALL_PREFIX=/home/colin/Repos/polaris_ranger_gazebo/install -G Unix Makefiles

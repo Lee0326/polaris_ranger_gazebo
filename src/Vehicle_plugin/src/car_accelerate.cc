@@ -19,26 +19,7 @@ VehicleControl::~VehicleControl()
 }
 void VehicleControl::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
 {
-    // initialize ros
-    if (!ros::isInitialized())
-    {
-        gzerr << "Not loading plugin since ROS hasn't been "
-              << "properly initialized.  Try starting gazebo with ros plugin:\n"
-              << "  gazebo -s libgazebo_ros_api_plugin.so\n";
-        return;
-    }
-    // ros stuff
-    this->rosNode = new ros::NodeHandle("");
-    ros::SubscribeOptions drive_cmd_so = ros::SubscribeOptions::create<std_msgs::Float64>(
-        "platoon/drive_cmd", 1,
-        boost::bind(&VehicleControl::driveCallBack, this, _1),
-        ros::VoidPtr(), &this->queue);
-    this->subDriveCmd = this->rosNode->subscribe(drive_cmd_so);
-    ros::SubscribeOptions steer_cmd_so = ros::SubscribeOptions::create<std_msgs::Float64>(
-        "platoon/steer_cmd", 1,
-        boost::bind(&VehicleControl::steerCallBack, this, _1),
-        ros::VoidPtr(), &this->queue);
-    this->subSteerCmd = this->rosNode->subscribe(steer_cmd_so);
+
     //Store the pointer to the model
     this->model = _parent;
     std::string gasPedalJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("gas_pedal");
@@ -50,6 +31,30 @@ void VehicleControl::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
     std::string brWheelJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("back_right_wheel");
     std::string flSteeringJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("front_left_wheel_steering");
     std::string frSteeringJointName = this->model->GetName() + "::" + _sdf->Get<std::string>("front_right_wheel_steering");
+    std::string Vehicle_ID = _sdf->Get<std::string>("vehicle_id");
+	
+    // initialize ros
+    if (!ros::isInitialized())
+    {
+        gzerr << "Not loading plugin since ROS hasn't been "
+              << "properly initialized.  Try starting gazebo with ros plugin:\n"
+              << "  gazebo -s libgazebo_ros_api_plugin.so\n";
+        return;
+    }
+    // ros stuff
+    std::string steer_cmd = "platoon/"+Vehicle_ID+"/steer_cmd";
+    std::string drive_cmd = "platoon/"+Vehicle_ID+"/drive_cmd";
+    this->rosNode = new ros::NodeHandle("");
+    ros::SubscribeOptions drive_cmd_so = ros::SubscribeOptions::create<std_msgs::Float64>(
+        drive_cmd, 1,
+        boost::bind(&VehicleControl::driveCallBack, this, _1),
+        ros::VoidPtr(), &this->queue);
+    this->subDriveCmd = this->rosNode->subscribe(drive_cmd_so);
+    ros::SubscribeOptions steer_cmd_so = ros::SubscribeOptions::create<std_msgs::Float64>(
+        steer_cmd, 1,
+        boost::bind(&VehicleControl::steerCallBack, this, _1),
+        ros::VoidPtr(), &this->queue);
+    this->subSteerCmd = this->rosNode->subscribe(steer_cmd_so);
 
     this->gasPedalJoint = this->model->GetJoint(gasPedalJointName);
     this->handBrakeJoint = this->model->GetJoint(handBrakeJointName);
