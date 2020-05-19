@@ -53,7 +53,7 @@ roslaunch platoon_simulation patoon_control.launch
 
 You will see the three vehicles in a platoon:
 
-[![Yo9YuT.jpg](https://s1.ax1x.com/2020/05/20/Yo9YuT.jpg)](https://imgchr.com/i/Yo9YuT)
+![Yo9YuT.jpg](https://s1.ax1x.com/2020/05/20/Yo9YuT.jpg)
 
 Open another terminal and run the platoon control node
 
